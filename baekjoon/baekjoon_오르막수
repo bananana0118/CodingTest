@@ -35,4 +35,6 @@ public static void main(String args[])throws IOException {
 	System.out.println(total%10007);
 	}
 }
-
+//규칙성을 발견하는게 좋다. 페르마의 삼각형과 비슷한 원리인 것 같다.
+//중복순열이지만 오름차순이라는 법칙이 있어서 하나하나 써보면서 규칙을 찾아야한다.
+//규칙을 찾을땐 적어도 인덱스 3까진 찾자.

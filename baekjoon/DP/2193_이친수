@@ -1,0 +1,31 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class Main {
+public static void main(String args[])throws IOException {
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	int N = Integer.parseInt(br.readLine());
+	br.close();
+	
+	long[] arr = new long[91];
+	
+	
+	arr[1] = 1;
+	arr[2] = 1;
+	
+	for(int i = 3 ; i <= N ; i++) {
+		arr[i] = arr[i-1] + arr[i-2]; 
+	}
+	
+
+	
+	System.out.println(arr[N]);
+	
+	}
+}
+
+//처음으로 질문게시판 안보고 혼자 푼 문제
+//대입법으로 풀었지만 수 안의 규칙성을 발견하는데에 익숙해진 듯 하다.
+//F(n) = F(n-1) +F(n-2) 라는 규칙성과 f(1) = 1 f(2) = 1 , f(3) = 2 f(4) = 3 꼴은 피보나치 수열을 의미한다는걸 기억해두는게 좋겠다.

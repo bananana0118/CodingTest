@@ -1,0 +1,24 @@
+#대문자 소문자 구분하지 않는다. =>lower로
+import sys
+
+#입력받기
+
+myStr = sorted(sys.stdin.readline().rstrip().upper()); #['z', 'z', 'a']
+# print(myStr);
+
+maxSpell =""; #가장 많은 문자를 저장한다.
+maxNum = -100 #가장 큰 숫자
+over2str = "";
+cnt = 0;
+#돌면서 해당 문자가 있는지 검사
+for i in range(26 ):
+    cnt = myStr.count(chr(65+i));
+    if(cnt > maxNum and cnt!=0):
+        maxNum = cnt;
+        maxSpell = chr(65+i); 
+        over2str = "";                      #MAX가 
+    elif (cnt == maxNum):
+        over2str = "?";
+
+# print(f'cnt : {cnt} maxSpell : {maxSpell}')
+print(maxSpell if over2str == ""   else "?");

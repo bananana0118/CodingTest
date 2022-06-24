@@ -1,0 +1,21 @@
+
+import sys
+
+n = int(sys.stdin.readline().strip());
+global lst;
+data = [int(sys.stdin.readline().strip()) for i in range(n)];
+lst =  [[0,0] for i in range(40)];
+dict={};
+dict[0] = [1,0];
+dict[1] = [0,1]
+for i in range(2,41):
+    list1 = dict[i-2];
+    list2 = dict[i-1];
+    dict[i] = [x+y for x,y in zip(list1, list2)]
+
+for i in data :
+    print(*dict[i]);
+
+
+
+#리스트 끼리의 덧셈에     dict[i] = [x+y for x,y in zip(list1, list2)] 를 이용한다는걸 기억하자.

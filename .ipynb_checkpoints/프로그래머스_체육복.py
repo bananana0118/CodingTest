@@ -29,9 +29,7 @@ def solution(n, lost, reserve):
                     dic1[x] =  1
                     dic1[x-1] -= 1
 
-    count = 0
-    for k, v in dic1.items():
-        if dic1[k] >= 0:
-            count +=1
             
-    return count
+    count = [k for k ,v in dic1.items() if v >= 0]
+
+    return len(count)

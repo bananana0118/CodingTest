@@ -1,0 +1,15 @@
+for i, num in enumerate(ls):
+    #맨 뒷자리 수보다 큰수가 올경우 pop 하고 그 값을 넣음
+    while len(collected) > 0  and k > 0 and collected[-1] <num :
+        collected.pop()
+        k -= 1
+    if k == 0:  #k = 0이 될 때, 남은 뒷부분을 배열에 넣고 break
+        collected += list(ls[i:])
+        break
+    collected.append(num)
+
+#999999 일 경우 밑에 케이스에 걸림
+collected = collected[:-k] if k> 0 else collected
+answer = collected
+
+print(collected)

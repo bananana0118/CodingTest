@@ -1,0 +1,26 @@
+def solution(N, number):
+    arr = [set() for i in range(8)]
+    count = 0
+
+    for i in range(0,8 ):
+        arr[i].add( int(str(N)* (i+1)))
+
+    for i in range(0, 8) :
+        for j in range(i):
+            for op1 in arr[j]:
+                for op2 in arr[i- j -1]:
+                    arr[i].add(op1 + op2)
+                    arr[i].add(op1 * op2)
+                    arr[i].add(op1 - op2)
+                    if op2 != 0 and op1 != 0:
+                        arr[i].add(op1 // op2)
+
+        if number in arr[i]:
+            count = i+1
+            break
+            
+        else :
+            count = -1
+
+    answer = count
+    return answer

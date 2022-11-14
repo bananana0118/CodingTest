@@ -1,0 +1,33 @@
+
+
+tickets = [["ICN", "SFO"], ["ICN", "ATL"], ["SFO", "ATL"], ["ATL", "ICN"], ["ATL","SFO"]]
+l = len(tickets)
+
+d = {}
+
+#그래프 구조 만들기
+for t in tickets :
+    d[t[0]] = d.get(t[0], []) + [t[1]]
+
+#알파벳 순으로 정렬 = 역순
+for t in d :
+    d[t].sort(reverse = True)
+
+#재귀적으로 돌면서 dfs
+
+stack = ["ICN"]
+path = []
+while len(stack) > 0:
+    top = stack[-1]
+    print(top)
+    #경로가 더이상 없다면 =>  pop
+    #어떤 공항에서 출발하는 표가 한장도 없는 경우 즉, 종착지인경우. 
+    if ( top not in d or len(d[top]) == 0) :
+         path.append(stack.pop(-1))
+    #경로가 있다면 => 경로쪽으로 간다.
+    else :
+        stack.append(d[top].pop(-1))
+
+print(path[::-1])
+
+

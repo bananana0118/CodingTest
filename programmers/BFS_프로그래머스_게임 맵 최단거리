@@ -1,0 +1,51 @@
+from collections import deque
+dx = [0, 0, 1, -1,]  #동 서
+dy = [+1, -1, 0, 0] #남 북
+
+
+
+def bfs(maps , x,y):
+    nexts = deque()
+
+    n = len(maps)
+    m = len(maps[0])
+
+    for i in range( len(dx))  :
+        nx = x + dx[i]
+        ny = y + dy[i]
+        if nx >= 0 and ny >=0 and nx<=n -1and ny <=m-1 :
+            if maps[nx][ny] == 1 :
+                nexts.append([nx,ny])
+    return nexts
+
+def solution(maps) :
+    answer = -1
+    n = len(maps)
+    m = len(maps[0])
+
+    end = [n-1,m-1]
+    x = 0
+    y = 0
+
+    maps[0][0] = 0
+    begin_item = [[x,y],1] #좌표와 cnt 를 한번에 관리
+
+    q = deque([begin_item])
+
+    while q :
+        [x,y], cnt = q.popleft()    #선입선출, 먼저들어온 값을 이용해 bfs
+
+
+        if [x,y] == end :         #만약 출력한 좌표 =current 가 4,4면 탈출
+            return cnt
+
+        nxts = bfs(maps,x,y)        #아니면 bfs를 돌림 연결된 노드 순서대로 다음에 가야할 노드들이 있는 배열
+
+        for nxt in nxts :            #연결된 노드룰 전부돌때까지 q 에 추가=> 도는 순서
+            q.append([nxt,cnt+1])    #다음에 돌 배열을 q에 추가함
+            maps[nxt[0]][nxt[1]] = 0    #q에 추가되었다는건 돌았다는 뜻, 즉 0으로 바꿔줌
+            
+    return answer
+
+
+

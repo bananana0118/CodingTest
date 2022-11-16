@@ -1,0 +1,51 @@
+
+def check_diff1(query, key):
+    diff = 0
+    for a, b in zip(query,key ):
+        if a!=b:
+            diff +=1
+    return diff == 1
+
+
+def solution(begin, target, words):
+    d= {}
+
+    d[begin] = d.get(begin,[])
+    d[target] = d.get(target,[])
+
+    for w in words :
+        d[w] = d.get(w,[])
+
+
+    #그래프만들기
+    for w in d.keys() :
+        for i in range (0, len(words)):
+            if check_diff1(w,words[i]) == 1 :
+                if(words[i]== target):
+                    d[w] = [target]
+                    break
+                else:
+                    d[w].append(words[i])
+
+    #dfs하기
+    stack =[begin] #need_visited
+    count = 0
+    
+    while len(stack) >0 :
+        top = stack[-1]
+        if(top == target):
+            break
+        # 연결된 노드가 없으면 path에 추가
+        if top not in d or len(d[top])==0:
+           stack.pop(-1)
+        else : # 연결된 노드가 있으면 돈다.
+            stack.append(d[top].pop(-1))
+            count+=1
+
+    if(len(stack)==0 and top != target):
+        count = 0
+
+
+
+    answer= count
+    return answer

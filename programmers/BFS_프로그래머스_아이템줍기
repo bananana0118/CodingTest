@@ -1,0 +1,64 @@
+from collections import deque
+#동서남북
+dx = [0, 0, -1,+1]
+dy = [1,-1,0,0]
+
+
+def bfs(pos, maps):
+    nexts = deque()
+    x = pos[0]
+    y = pos[1]
+
+    for i in range(len(dx)):
+        nx = x + dx[i]
+        ny = y + dy[i]
+            if maps[nx][ny] == 1:
+                nexts.append([nx,ny])
+    return nexts
+
+def solution(rectangle, characterX, characterY, itemX, itemY):
+
+    maps2 = [[5]*(102) for _ in range(102)]
+    
+    for rect in rectangle:
+
+        x1 = rect[1]*2
+        x2 = rect[3]*2
+        y1 = rect[0]*2
+        y2 = rect[2]*2
+
+        #case1 : 그래프제작
+        for i in range(x1,x2+1) :
+            for j in range(y1,y2+1):
+                if x1 < i < x2 and y1 < j < y2 :
+                    maps2[i][j] = 0  #내부는 0으로 채움
+                elif maps2[i][j] != 0 :     #내부가 아니면  1로 채움
+                    maps2[i][j] = 1
+
+
+
+    q = deque()
+
+    start = [ characterY*2,characterX*2,]
+    count = 0
+    q.append([start,count])
+
+    #종료조건 설정
+
+    while q :
+    # 현재노드를 가리키는 포인터 갱신
+        pos ,count = q.popleft()
+    #세부종료조건
+        if(pos == [itemY*2,itemX*2]): 
+            break
+
+        else :
+            # 다음노드를 불러오는 알고리즘
+            nexts = bfs(pos,maps2)
+            for nxt in nexts :
+                q.append([nxt,count+1])
+                maps2[nxt[0]][nxt[1]] = 0
+
+
+    answer= count//2
+    return answer

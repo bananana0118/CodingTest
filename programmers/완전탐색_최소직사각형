@@ -1,0 +1,13 @@
+def solution() :
+    long = []
+    short = []
+
+
+    for size in sizes:
+        x = size[1] if size[0] < size[1] else size[0]
+        long.append(x)
+        y = size[1] if size[0] > size[1] else size[0]
+        short.append(y)
+
+
+    return max(long) * max(short)

@@ -1,0 +1,30 @@
+def solution(answers):
+    l = len(answers)
+    answer1 = [1,2,3,4,5]
+    answer2 = [2,1,2,3,2,4,2,5]
+    answer3 = [3,3,1,1,2,2,4,4,5,5]
+
+
+    collect = [0,0,0]
+
+    for idx, answer in enumerate(answers) :
+        if answer1[idx%len(answer1)] == answer:
+            collect[0] +=1
+        if answer2[idx%len(answer2)] == answer:
+            collect[1] += 1
+        if answer3[idx%len(answer3)] == answer:
+            collect[2] += 1
+
+
+    answer = []
+
+    if max(collect) == collect[0] :
+        answer.append(1)
+    if max(collect) == collect[1] :
+        answer.append(2)
+    if max(collect) == collect[2] :
+        answer.append(3)
+
+    return answer
+
+

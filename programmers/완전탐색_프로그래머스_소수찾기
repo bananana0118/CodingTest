@@ -1,0 +1,59 @@
+from itertools import permutations
+
+
+def combination(arr,l):
+    com = set()
+
+    k = list(permutations(arr,l))
+    #combination 만들기
+    for x in k:
+        if(x[0] == '0'):
+            temp = list(x)
+            print(temp)
+            while temp[0] == "0":
+                del temp[0]
+                if (temp == []):
+                    break
+            if temp != [] :
+                com.add("".join(temp))
+        else:
+            com.add("".join(x))
+
+
+
+    return com
+
+def isPrime(num) :
+    for i in range(2,num) :
+        if( num % i == 0):
+            return False
+    return True
+
+
+def solution(numbers):
+    #데이터 전처리
+    arr = list(numbers)
+    combi = set()
+
+    #주어진 조합으로 조합만들기
+
+    #1의 자리수
+    for i in range( len(numbers)) :
+        combi.update(combination(numbers,i+1))
+
+    
+    answer= 0
+    #소수만 뽑기
+
+    lst = list(combi)
+    for i in range (len(lst)):
+        if isPrime(int(lst[i])) == False:
+            combi.remove(lst[i])
+
+    if '1' in combi:
+        combi.remove('1')
+
+
+
+    answer = len(combi)
+    return answer

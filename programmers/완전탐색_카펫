@@ -1,0 +1,13 @@
+def solution(brown, yellow): #O(N2)
+
+    total = brown + yellow
+
+    answer =0
+
+    for w in range(3, brown//2):
+        for h in range(3, brown//2) :
+            if w * h == total and (w +h)*2 -4 == brown and w>= h :
+                answer = [w,h]
+                break
+    
+    return answer

@@ -1,0 +1,17 @@
+x = ["A","E","I","O","U"]
+wordlist = []
+
+def dfs(myword,arr):
+
+    if len(myword) > 5:
+        return
+    for i in range(len(arr)):
+        w = myword + arr[i]
+        if(w not in wordlist and len(w) <=5):
+            wordlist.append(w)
+            dfs(w, arr)
+
+
+dfs("",x)
+answer = wordlist.index(word)+1
+return answer

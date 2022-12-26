@@ -1,0 +1,18 @@
+N = int(input())
+arr = list(map(int, input().split()))
+
+avg = round(sum(arr)/len(arr))
+min = 2147000000
+
+for idx , x in enumerate (arr):
+    temp = abs(x-avg)
+    if(temp < min):
+        min = temp
+        res = idx+1
+        score = x
+    if(temp == min):
+        if(score < x):
+            res = idx+1
+            score = x
+
+print(avg, res)

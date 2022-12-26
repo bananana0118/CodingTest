@@ -1,0 +1,40 @@
+N , K=  map(int,input().split())
+
+
+## 약수를 구한다
+
+arr = []
+for i in range(1, N+1):
+    num =N % i  
+    if ( num == 0 ) :
+        arr.append(i)
+    
+
+if (len(arr) >= K ) :
+    result = arr[K-1]
+else : 
+    result = -1
+    
+print(result)
+
+## 개수를 센다.
+## k개보다 적을경우 -1
+
+##쌤코드
+##굳이 Array에 담을 필요없이 바로 출력하면 된다.
+##마지막에 else를 하면 정상종료 되었을때 출력된다.
+
+N , K=  map(int,input().split())
+
+
+## 약수를 구한다
+
+cnt = 0
+for i in range(1, N+1):
+    if ( N % i == 0 ) :
+        cnt += 1
+    if (cnt == K ):
+        print(i)
+
+else : 
+    print(-1)

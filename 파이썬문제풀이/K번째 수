@@ -1,0 +1,12 @@
+T = int(input().rstrip())
+
+cnt = 0
+while(cnt<T ):
+    arr = []
+    n ,s ,e, k = map(int,input().split())
+    arr = list(map(int,input().split()))
+
+    arr2 = arr[s-1:e]
+    arr2.sort()
+    print(f'#{cnt+1} {arr2[k-1]}')
+    cnt +=1

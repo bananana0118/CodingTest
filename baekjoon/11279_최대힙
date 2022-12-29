@@ -1,0 +1,26 @@
+import heapq #빠른 힙 모듈 파이썬은 최소힙만 지원한다.
+
+T= int(sys.stdin.readline())
+arr = []
+for t in range(T):
+    arr.append(int(sys.stdin.readline())) #입력값 빠르게 받기
+
+cnt = arr.count(0)
+
+def solution (cnt) :
+    heap = []
+    i = 0
+    while i != cnt:
+        if(arr[i] == 0 ):
+            if (arr == [] or heap==[]):
+                print(0)
+            else :
+                maxNum = -heapq.heappop(heap)   #최소힙에 값을 넣고 뺄때 -를 붙이면 최대힙을 구현할 수 있다.
+                print(maxNum)
+        else :
+            heapq.heappush(heap,-(arr[i]))
+            cnt+=1
+        i+=1
+
+
+solution(cnt)

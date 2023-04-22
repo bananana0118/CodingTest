@@ -1,6 +1,6 @@
 let fs = require('fs');
 const input = fs
-  .readFileSync(__dirname + '/example.txt')
+  .readFileSync(__dirname + '\\example.txt')
   .toString()
   .split('\n');
 // const input = fs.readFileSync('/dev/stdin').toString().split('\n');

@@ -1,46 +1,53 @@
 from collections import deque
 
+bfs_list = []
+dfs_list = []
+def DFS(graph,start,V):
+    visited=[0]*(V+1)
 
-def DFS(graph, v, visited):
-    visited[v] = True
-    dfs_list.append(v)
-    for i in sorted(graph[v]):
-        if not visited[i]:
-            DFS(graph, i, visited)
+    stack=[start] #pop
 
+    #expand
+    while stack:
+        v = stack.pop();
+        if not visited[v]:
+            visited[v] = 1
+            dfs_list.append(v);
+            for i in sorted(graph[v], reverse=True):
+                if(i!=0):
+                    stack.append(i)
 
-def BFS(graph, start, visited):
-    queue = deque([start])
+def BFS(graph,start,V):
+    visited = [0]*(V+1)
+    queue = deque()
 
-    visited[start] = True
-
-    ##큐가 빌 떄까지 반복
+    queue.append(start)
+    visited[start] = 1
     while queue:
         v = queue.popleft()
         bfs_list.append(v)
-        ##해당원소와 연결된, 아직 방문안한 원소들을 큐에 넣는다.
         for i in sorted(graph[v]):
-            if not visited[i]:
+            if not visited[i] and i != 0:
                 queue.append(i)
-                visited[i] = True
-
+                visited[i] = 1
 
 import sys
 
-N, M, start = map(int, sys.stdin.readline().split())
-graph = [[] for _ in range(N + 1)]
-for _ in range(M):
-    a, b = map(int, sys.stdin.readline().split())
-    graph[a].append(b)
-    graph[b].append(a)
+V,E,start = map(int, sys.stdin.readline().split())
 
-dfs_list = []
-bfs_list = []
-visited = [False] * (N + 1)
 
-DFS(graph, start, visited)
-visited = [False] * (N + 1)
-BFS(graph, start, visited)
+adj = [[] for i in range(V+1)];
 
+for i in range(1,E+1) :
+    s, e = map(int, sys.stdin.readline().split());
+    adj[s].append(e)
+    adj[e].append(s)
+
+
+
+DFS(adj,start,V)
+BFS(adj,start,V)
 print(*dfs_list)
 print(*bfs_list)
+
+

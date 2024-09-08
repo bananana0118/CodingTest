@@ -42,7 +42,6 @@ for (let i = 0; i < M; i++) {
     }
 }
 
-// target은 물건의 총 개수입니다
 const visited = Array.from({ length: M }, () =>
     Array.from({ length: N }, () => Array(1 << target).fill(false))
 );
@@ -57,9 +56,6 @@ const directions = [
 
 const q = [];
 
-let minMove = Infinity;
-let move = 0;
-
 const BFS = () => {
     q.push([start[0], start[1], 0, 0]);
 
@@ -68,6 +64,7 @@ const BFS = () => {
     while (q.length !== 0) {
         const [r, c, state, steps] = q.shift(); //추후 만들어서 하기
 
+        //큐에서 팝
         //큐에서 팝
         if (map[r][c] === 4 && state === (1 << target) - 1) {
             return steps;
@@ -89,12 +86,11 @@ const BFS = () => {
             if (map[dr][dc] === 2) {
                 for (let i = 0; i < items.length; i++) {
                     if (dr === items[i][0] && dc === items[i][1]) {
-                        newState |= 1 << i;  // 비트마스크로 상태 업데이트
+                        newState |= 1 << i; // 비트마스크로 상태 업데이트
                         break;
                     }
                 }
             }
-
             //방문하지 않은 장소라면
             if (!visited[dr][dc][newState]) {
                 //이동
@@ -104,8 +100,7 @@ const BFS = () => {
         }
     }
 
-    return minMove;
-
     //챙겨야할 아이템 찾고 최소거리 갱신
 };
+
 console.log(BFS());

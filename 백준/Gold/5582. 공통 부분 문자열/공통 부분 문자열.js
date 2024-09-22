@@ -19,11 +19,10 @@ function sol(s1, s2) {
         for (let j = 0; j < s2.length; j++) {
             if (s1[i] === s2[j]) {
                 arr[i + 1][j + 1] = arr[i][j] + 1;
+                if (arr[i + 1][j + 1] > answer) answer = arr[i + 1][j + 1];
             } else {
                 arr[i + 1][j + 1] = 0;
             }
-
-            if (arr[i + 1][j + 1] > answer) answer = arr[i + 1][j + 1];
         }
     }
     return answer;
